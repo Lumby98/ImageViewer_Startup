@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,6 +22,7 @@ public class FXMLDocumentController implements Initializable
 {
     private final List<Image> images = new ArrayList<>();
     private int currentImageIndex = 0;
+    
 
     @FXML
     Parent root;
@@ -39,6 +42,9 @@ public class FXMLDocumentController implements Initializable
     private Button btnStartSlide;
     @FXML
     private Button btnStopSlide;
+    
+    
+    private ExecutorService executor;
 
     private void handleBtnLoadAction(ActionEvent event)
     {
@@ -107,11 +113,15 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleBtnStartSlide(ActionEvent event)
     {
+        Runnable ss = new SlideShow(imageView, images);
+        executor = Executors.newSingleThreadExecutor();
+        executor.submit(ss);
     }
 
     @FXML
     private void handleBtnStopSlide(ActionEvent event)
     {
+        executor.shutdownNow();
     }
 
 }
