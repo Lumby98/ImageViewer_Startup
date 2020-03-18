@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="1091.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imageviewerproject.FXMLDocumentController">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="1091.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imageviewerproject.FXMLDocumentController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="1091.0" BorderPane.alignment="CENTER">
          <children>
-            <ButtonBar prefHeight="57.0" prefWidth="388.0">
+            <ButtonBar prefHeight="58.0" prefWidth="686.0">
                <buttons>
                   <Button id="btnLoad" fx:id="btnLoad" mnemonicParsing="false" prefHeight="27.0" prefWidth="141.0" text="Load images...">
                      <opaqueInsets>
@@ -24,6 +24,8 @@
                      </opaqueInsets>
                   </Button>
                   <Button id="btnNext" fx:id="btnNext" mnemonicParsing="false" text="Next" />
+                  <Button id="btnNext" fx:id="btnStartSlide" mnemonicParsing="false" onAction="#handleBtnStartSlide" text="Start SlideShow" />
+                  <Button id="btnNext" fx:id="btnStopSlide" mnemonicParsing="false" onAction="#handleBtnStopSlide" text="Stop SlideShow" />
                </buttons>
             </ButtonBar>
          </children>
