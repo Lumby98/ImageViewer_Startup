@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -42,9 +43,11 @@ public class FXMLDocumentController implements Initializable
     private Button btnStartSlide;
     @FXML
     private Button btnStopSlide;
-    
+    @FXML
+    private Label filename;
     
     private ExecutorService executor;
+    
 
     private void handleBtnLoadAction(ActionEvent event)
     {
@@ -59,6 +62,7 @@ public class FXMLDocumentController implements Initializable
             files.forEach((File f) ->
             {
                 images.add(new Image(f.toURI().toString()));
+                
             });
             displayImage();
         }
@@ -113,7 +117,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleBtnStartSlide(ActionEvent event)
     {
-        Runnable ss = new SlideShow(imageView, images);
+        Runnable ss = new SlideShow(imageView, images, filename);
         executor = Executors.newSingleThreadExecutor();
         executor.submit(ss);
     }
