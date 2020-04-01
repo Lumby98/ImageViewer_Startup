@@ -6,8 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class ImageViewer extends Application
 {
+    
     
     @Override
     public void start(Stage stage) throws Exception
@@ -20,10 +22,13 @@ public class ImageViewer extends Application
         stage.setTitle("Image Viewer");
         stage.show();
     }
+  
 
     public static void main(String[] args)
     {
         launch(args);
     }
+    
+    
     
 }

@@ -47,6 +47,8 @@ public class FXMLDocumentController implements Initializable
     private Label filename;
     
     private ExecutorService executor;
+    private final Scheduler scheduler = new Scheduler();
+    
     
 
     private void handleBtnLoadAction(ActionEvent event)
@@ -66,6 +68,12 @@ public class FXMLDocumentController implements Initializable
             });
             displayImage();
         }
+        
+        // create slideshow instance
+        SlideShow slideshow = new SlideShow(imageView, images, filename);
+        
+        //Add the new slideshow instance to the scheduler
+        scheduler.addSlideShow(slideshow);
     }
 
     private void handleBtnPreviousAction(ActionEvent event)
@@ -125,7 +133,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleBtnStopSlide(ActionEvent event)
     {
-        executor.shutdownNow();
+        scheduler.removeCurrentSlideshow();
     }
 
 }

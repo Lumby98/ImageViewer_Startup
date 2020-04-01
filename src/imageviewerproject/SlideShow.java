@@ -11,6 +11,8 @@ import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class SlideShow implements Runnable {
@@ -19,6 +21,7 @@ public class SlideShow implements Runnable {
     private ImageView imageView;
     private List<Image> images;
     private Label filename;
+    private ExecutorService executor;
     
     public SlideShow(ImageView imageView, List<Image> images, Label filename){
         this.imageView = imageView;
@@ -46,6 +49,16 @@ public class SlideShow implements Runnable {
         }
     }
     
+    public void start()
+    {
+        executor = Executors.newSingleThreadExecutor();
+        executor.submit(this);
+    }
+    
+    public void stop()
+    {
+        executor.shutdownNow();
+    }
     //YoMama
 }
 
