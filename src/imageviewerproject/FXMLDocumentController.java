@@ -31,22 +31,13 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private Button btnLoad;
 
-    @FXML
-    private Button btnPrevious;
-
-    @FXML
-    private Button btnNext;
 
     @FXML
     private ImageView imageView;
-    @FXML
-    private Button btnStartSlide;
-    @FXML
-    private Button btnStopSlide;
+   
     @FXML
     private Label filename;
     
-    private ExecutorService executor;
     private final Scheduler scheduler = new Scheduler();
     
     
@@ -76,24 +67,6 @@ public class FXMLDocumentController implements Initializable
         scheduler.addSlideShow(slideshow);
     }
 
-    private void handleBtnPreviousAction(ActionEvent event)
-    {
-        if (!images.isEmpty())
-        {
-            currentImageIndex = 
-                    (currentImageIndex - 1 + images.size()) % images.size();
-            displayImage();
-        }
-    }
-
-    private void handleBtnNextAction(ActionEvent event)
-    {
-        if (!images.isEmpty())
-        {
-            currentImageIndex = (currentImageIndex + 1) % images.size();
-            displayImage();
-        }
-    }
 
     private void displayImage()
     {
@@ -111,24 +84,8 @@ public class FXMLDocumentController implements Initializable
             handleBtnLoadAction(event);
         });
 
-        btnPrevious.setOnAction((ActionEvent event) ->
-        {
-            handleBtnPreviousAction(event);
-        });
-        
-        btnNext.setOnAction((ActionEvent event) ->
-        {
-            handleBtnNextAction(event);
-        });
     }
 
-    @FXML
-    private void handleBtnStartSlide(ActionEvent event)
-    {
-        Runnable ss = new SlideShow(imageView, images, filename);
-        executor = Executors.newSingleThreadExecutor();
-        executor.submit(ss);
-    }
 
     @FXML
     private void handleBtnStopSlide(ActionEvent event)
