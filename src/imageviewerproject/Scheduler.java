@@ -6,7 +6,6 @@
 package imageviewerproject;
 
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -51,7 +50,7 @@ public class Scheduler implements Runnable
     
     public synchronized void addSlideShow(SlideShow s)
     {
-        //Start the scheduler, if it is nor already running
+        //Start the scheduler, if it is not already running
         if(executor == null || executor.isShutdown())
         {
             executor = Executors.newSingleThreadExecutor();
