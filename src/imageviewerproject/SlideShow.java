@@ -59,6 +59,6 @@ public class SlideShow implements Runnable {
     {
         executor.shutdownNow();
     }
-    //YoMama
+   
 }
 
